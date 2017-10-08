@@ -102,19 +102,14 @@ el.addEventListener('click', function() {
 	function renderChart(data,date)
 	{
 	    var chart = new CanvasJS.Chart("chartContainer", {
-	    	 title:{
-     text: date.format("[wx]YYYYMMDD[.dat]")
-    // more attributes 
- },
 		          legend: {
-       horizontalAlign: "left", // "center" , "right"
-       verticalAlign: "center",  // "top" , "bottom"
+       horizontalAlign: "center", // "center" , "right"
+       verticalAlign: "bottom",  // "top" , "bottom"
        fontSize: 15
      },
 exportEnabled: true,
-zoomEnabled: true,
+zoomEnabled: false,
       axisX:{
-        title: "Time",
         valueFormatString:  "HH:mm"
      },
 		    data: [{
@@ -168,7 +163,7 @@ zoomEnabled: true,
         </script>
     </head>
     <body>
-        <div class="w3-container" id="chartContainer" style="width:100%; height:300px;"></div>
+        <div class="w3-container" id="chartContainer" style="width:100%; height:90%;"></div>
         <div class="w3-container w3-cell-row">
         <div class="w3-container w3-blue w3-cell">
             <h2>Select a different date</h2>
