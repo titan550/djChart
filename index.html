@@ -164,18 +164,9 @@ zoomEnabled: false,
     </head>
     <body>
         <div class="w3-container" id="chartContainer" style="width:100%; height:90%;"></div>
-        <div class="w3-container w3-cell-row">
-        <div class="w3-container w3-blue w3-cell">
-            <h2>Select a different date</h2>
-        </div>
-        <form class="w3-container w3-cell">
-            <input class="w3-container" id="datePicker" class="w3-input" type="date">
-             <div id="element"> <button class="w3-container" type='button'>Render</button> </div>
+        <form class="w3-container w3-cell-row">
+        <input id="datePicker" class="w3-input w3-cell" type="date">
+             <div class="w3-container w3-cell" id="element"> <button type='button'>Render</button> </div>
 </p></form>
-</div>
-<script>
-document.getElementById("element").onclick = function() {
-    chart.render();
-}
 </script>
 </body></html>
