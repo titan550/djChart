@@ -1,18 +1,27 @@
-<!DOCTYPE html>
 <html>
     <head>
-        <title>Chart using XML Data</title>
+        <title>Weather Station Status</title>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
         <script type="text/javascript" src="moment.min.js"></script>
         <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-        <script type="text/javascript">          
-            
+        <script type="text/javascript">
     window.onload = function() {
+    	document.getElementById("datePicker").value = moment().subtract(1,"days").format("YYYY-MM-DD");
+    	var el = document.getElementById("element");
+
+el.addEventListener('click', function() {
+  	var datePicker = document.getElementById('datePicker');
+  	$.get(getFilePath(moment(datePicker.value)), function(data) {
+		renderChart(data,moment(datePicker.value));
+
+	});
+});
         var dataPoints = [];
-        function getFilePath()
+        function getFilePath(date)
         {
         	var filePath = "https://cors.io/?http://www.crestlinesoaring.org/wx/umwx/betaOne/";
-        	var fileName = moment().subtract(1,"days").format("[wx]YYYYMMDD[.dat]");
+        	var fileName = date.format("[wx]YYYYMMDD[.dat]");
         	return filePath + fileName;
         }
         function getTempDataPointsFromCSV(csv) {
@@ -86,10 +95,15 @@
             return dataPoints;
         }
 	
-	$.get(getFilePath(), function(data) {
+	$.get(getFilePath(moment().subtract(1,"days")), function(data) {
+		renderChart(data,moment().subtract(1,"days"));
+
+	});
+	function renderChart(data,date)
+	{
 	    var chart = new CanvasJS.Chart("chartContainer", {
 	    	 title:{
-     text: moment().subtract(1,"days").format("[wx]YYYYMMDD[.dat]")
+     text: date.format("[wx]YYYYMMDD[.dat]")
     // more attributes 
  },
 		          legend: {
@@ -146,12 +160,8 @@ zoomEnabled: true,
 		
 	      chart.render();
 
-	});
+	}
   }
-
-        
-        
-        
         
         
         
@@ -159,5 +169,16 @@ zoomEnabled: true,
     </head>
     <body>
         <div id="chartContainer" style="width:100%; height:300px;"></div>
-    </body>
-</html>
+        <div class="w3-container w3-blue">
+            <h2>Select a different date</h2>
+        </div>
+        <form class="w3-container">
+            <input id="datePicker" class="w3-input" type="date">
+             <div id="element"> <button type='button'>Render</button> </div>
+</p></form>
+<script>
+document.getElementById("element").onclick = function() {
+    chart.render();
+}
+</script>
+</body></html>
