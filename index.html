@@ -20,7 +20,7 @@ el.addEventListener('click', function() {
         var dataPoints = [];
         function getFilePath(date)
         {
-        	var filePath = "https://cors.io/?http://www.crestlinesoaring.org/wx/umwx/betaOne/";
+        	var filePath = "https://galvanize-cors-proxy.herokuapp.com/http://www.crestlinesoaring.org/wx/umwx/betaOne/";
         	var fileName = date.format("[wx]YYYYMMDD[.dat]");
         	return filePath + fileName;
         }
