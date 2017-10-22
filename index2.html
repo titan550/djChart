@@ -1,26 +1,25 @@
-
-<!-- saved from url=(0053)https://rawgit.com/titan550/djChart/master/index.html -->
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html>
+    <head>
         <title>Weather Station Status</title>
-        <link rel="stylesheet" href="./index_files/w3.css">
-        <script type="text/javascript" src="./index_files/jquery-1.11.1.min.js"></script>
-        <script type="text/javascript" src="./index_files/moment.min.js"></script>
-        <script type="text/javascript" src="./index_files/canvasjs.min.js"></script>
+        <link rel="stylesheet" href="w3.css">
+        <script type="text/javascript" src="jquery-1.11.1.min.js"></script>
+        <script type="text/javascript" src="moment.min.js"></script>
+        <script type="text/javascript" src="canvasjs.min.js"></script>
         <script type="text/javascript">
     window.onload = function() {
-    	document.getElementById("datePicker").value = moment().subtract(1,"days").format("YYYY-MM-DD");
+    	document.getElementById("datePicker").value = moment().format("YYYY-MM-DD");
     	var datePicker = document.getElementById('datePicker');
 datePicker.addEventListener('change', function() {
-  	var datePicker = document.getElementById('datePicker');
-  	$.get(getFilePath(moment(datePicker.value)), function(data) {
-		renderChart(data,moment(datePicker.value));
+    var datePicker = document.getElementById('datePicker');
+    $.get(getFilePath(moment(datePicker.value)), function(data) {
+        renderChart(data,moment(datePicker.value));
 
-	});
+    });
 });
         var dataPoints = [];
         function getFilePath(date)
         {
-        	var filePath = "https://galvanize-cors-proxy.herokuapp.com/http://www.crestlinesoaring.org/wx/umwx/betaOne/";
+        	var filePath = "https://cors.io?http://www.crestlinesoaring.org/wx/umwx/betaOne/";
         	var fileName = date.format("[wx]YYYYMMDD[.dat]");
         	return filePath + fileName + "?" + Math.random();
         }
@@ -95,8 +94,8 @@ datePicker.addEventListener('change', function() {
             return dataPoints;
         }
 	
-	$.get(getFilePath(moment().subtract(1,"days")), function(data) {
-		renderChart(data,moment().subtract(1,"days"));
+	$.get(getFilePath(moment()), function(data) {
+		renderChart(data,moment());
 
 	});
 	function renderChart(data,date)
@@ -161,24 +160,11 @@ zoomEnabled: false,
         
         
         </script>
-    <style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
-.en-markup-crop-options {
-    top: 18px !important;
-    left: 50% !important;
-    margin-left: -100px !important;
-    width: 200px !important;
-    border: 2px rgba(255,255,255,.38) solid !important;
-    border-radius: 4px !important;
-}
-
-.en-markup-crop-options div div:first-of-type {
-    margin-left: 0px !important;
-}
-</style></head>
-    <body class="vsc-initialized">
-        <div class="w3-container" id="chartContainer" style="width:100%; height:93%;"><div class="canvasjs-chart-container" style="position: relative; text-align: left; cursor: auto;"><canvas class="canvasjs-chart-canvas" width="1916" height="824" style="position: absolute;"></canvas><canvas class="canvasjs-chart-canvas" width="1916" height="824" style="position: absolute; cursor: default;"></canvas><div class="canvasjs-chart-toolbar" style="position: absolute; right: 1px; top: 1px; border: 1px solid transparent;"><button state="menu" type="button" title="More Options" style="background-color: white; color: black; border: none; user-select: none; padding: 5px 12px; cursor: pointer; float: left; width: 40px; height: 25px; outline: 0px; vertical-align: baseline; line-height: 0; display: inline;"><img style="height:95%;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAeCAYAAABE4bxTAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADoSURBVFhH7dc9CsJAFATgRxIIBCwCqZKATX5sbawsY2MvWOtF9AB6AU8gguAJbD2AnZ2VXQT/Ko2TYGCL2OYtYQc+BuYA+1hCtnCVwMm27SGaXpDJIAiCvCkVR05hGOZNN3HkFMdx3nQRR06+76/R1IcFLJlNQEWlmWlBTwJtKLKHynehZqnjOGM0PYWRVXk61C37p7xlZ3Hk5HneCk1dmMH811xGoKLSzDiQwIBZB4ocoPJdqNkDt2yKlueWRVGUtzy3rPwo3sWRU3nLjuLI6OO67oZM00wMw3hrmpZx0XU9syxrR0T0BeMpb9dneSR2AAAAAElFTkSuQmCC" alt="More Options"></button><div tabindex="-1" style="position: absolute; user-select: none; cursor: pointer; right: 0px; top: 25px; min-width: 120px; outline: 0px; font-size: 14px; font-family: Arial, Helvetica, sans-serif; padding: 5px 0px; text-align: left; line-height: 10px; background-color: white; box-shadow: rgb(136, 136, 136) 2px 2px 10px; display: none;"><div style="padding: 12px 8px; background-color: white; color: black;">Print</div><div style="padding: 12px 8px; background-color: white; color: black;">Save as JPEG</div><div style="padding: 12px 8px; background-color: white; color: black;">Save as PNG</div></div></div><div class="canvasjs-chart-tooltip" style="position: absolute; height: auto; box-shadow: rgba(0, 0, 0, 0.1) 1px 1px 2px 2px; z-index: 1000; pointer-events: none; display: none; border-radius: 5px;"><div style=" width: auto;height: auto;min-width: 50px;line-height: auto;margin: 0px 0px 0px 0px;padding: 5px;font-family: Calibri, Arial, Georgia, serif;font-weight: normal;font-style: italic;font-size: 14px;color: #000000;text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);text-align: left;border: 2px solid gray;background: rgba(255,255,255,.9);text-indent: 0px;white-space: nowrap;border-radius: 5px;-moz-user-select:none;-khtml-user-select: none;-webkit-user-select: none;-ms-user-select: none;user-select: none;} "> Sample Tooltip</div></div><a class="canvasjs-chart-credit" style="outline: none; margin: 0px; position: absolute; right: 2px; top: 810px; color: dimgrey; text-decoration: none; font-size: 11px; font-family: Calibri, &quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, sans-serif;" tabindex="-1" target="_blank" href="https://canvasjs.com/">CanvasJS.com</a></div></div>
-        <form class="w3-container w3-cell-row">
+    </head>
+    <body>
+        <div class="w3-container" id="chartContainer" style="width:100%; height:90%;"></div>
+                <form class="w3-container w3-cell-row">
         <input id="datePicker" class="w3-input" style="text-align:center;font-size:25px" width=100% type="date">
 <p></p></form>
-
-<span style="position: absolute; left: 0px; top: -20000px; padding: 0px; margin: 0px; border: none; white-space: pre; line-height: normal; font-family: &quot;Trebuchet MS&quot;, Helvetica, sans-serif; font-size: 29px; font-weight: normal; display: none;">Mpgyi</span></body></html>
+</script>
+</body></html>
