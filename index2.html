@@ -6,20 +6,55 @@
         <script type="text/javascript" src="moment.min.js"></script>
         <script type="text/javascript" src="canvasjs.min.js"></script>
         <script type="text/javascript">
-    window.onload = function() {
-    	document.getElementById("datePicker").value = moment().format("YYYY-MM-DD");
-    	var datePicker = document.getElementById('datePicker');
-datePicker.addEventListener('change', function() {
-    var datePicker = document.getElementById('datePicker');
-    $.get(getFilePath(moment(datePicker.value)), function(data) {
-        renderChart(data,moment(datePicker.value));
+    	window.onload = function()
+    	{
+    		document.getElementById("datePicker").value = moment().format("YYYY-MM-DD");
+    		var datePicker = document.getElementById('datePicker');
+			datePicker.addEventListener('change', function()
+			{
+							var datePicker = document.getElementById('datePicker');
+							$.get(getFilePath(moment(datePicker.value)), function(data)
+									{
+										renderChart(data,moment(datePicker.value));
+									}
+								);
+						});
+		    var directory = document.getElementById('directory');
+			directory.addEventListener('change', function()
+			{
+							var directory = document.getElementById('directory');
+							$.get(getFilePath(moment(datePicker.value)), function(data)
+									{
+										renderChart(data,moment(datePicker.value));
+									}
+								);
 
-    });
-});
+						});
+			document.getElementById("uploadFile").onchange = function(evt)
+			{
+				if(!window.FileReader) return; // Browser is not compatible
+
+				var reader = new FileReader();
+
+				reader.onload = function(evt) {
+					if(evt.target.readyState != 2) return;
+					if(evt.target.error) {
+						alert('Error while reading file');
+						return;
+					}
+
+					filecontent = evt.target.result;
+					renderChart(filecontent,moment(datePicker.value));
+
+				};
+
+				reader.readAsText(evt.target.files[0]);
+			};
+
         var dataPoints = [];
         function getFilePath(date)
         {
-        	var filePath = "https://cors.io?http://www.crestlinesoaring.org/wx/umwx/betaOne/";
+        	var filePath = "https://cors.io?http://www.crestlinesoaring.org/wx/umwx/" + document.getElementById("directory").value + "/";
         	var fileName = date.format("[wx]YYYYMMDD[.dat]");
         	return filePath + fileName + "?" + Math.random();
         }
@@ -162,9 +197,15 @@ zoomEnabled: false,
         </script>
     </head>
     <body>
-        <div class="w3-container" id="chartContainer" style="width:100%; height:90%;"></div>
+        <div class="w3-container" id="chartContainer" style="width:100%; height:80%;"></div>
                 <form class="w3-container w3-cell-row">
         <input id="datePicker" class="w3-input" style="text-align:center;font-size:25px" width=100% type="date">
+        <select id= "directory" class="w3-input" style="text-align:center;font-size:25px">
+		  <option value="betaOne">betaOne</option>
+		  <option value="betaTwo">betaTwo</option>
+		  <option value="betaThree">betaThree</option>
+		</select>
+		<input class="w3-input" id="uploadFile" name="Upload CSV" type="file">
 <p></p></form>
 </script>
 </body></html>
