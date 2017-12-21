@@ -67,26 +67,42 @@
                     points = csvLines[i].split(",");
                     dataPoints.push({ 
                         x: new Date(points[1] + " " + points[0]), 
-                        y: parseFloat(points[12])*50 		
+                        y: parseFloat(points[11])*50 		
                     });
                 }
             return dataPoints;
         }
                 function getSolarADataPointsFromCSV(csv) {
+                	if(document.getElementById('directory').value == "betaThree")
+                	{
+                		shift = -1;
+                	}
+                	else
+                	{
+                		shift = 0;
+                	}
             var dataPoints = csvLines = points = [];
-            csvLines = csv.split(/[\r?\n|\r|\n]+/);         
+            csvLines = csv.split(/[\r?\n|\r|\n]+/);  
 		        
             for (var i = 0; i < csvLines.length; i++)
                 if (csvLines[i].length > 0) {
                     points = csvLines[i].split(",");
                     dataPoints.push({ 
                         x: new Date(points[1] + " " + points[0]), 
-                        y: parseFloat(points[14]) 		
+                        y: Math.abs(parseFloat(points[14 + shift])) 		
                     });
                 }
             return dataPoints;
         }
                 function getSolarVDataPointsFromCSV(csv) {
+                	if(document.getElementById('directory').value == "betaThree")
+                	{
+                		shift = -1;
+                	}
+                	else
+                	{
+                		shift = 0;
+                	}
             var dataPoints = csvLines = points = [];
             csvLines = csv.split(/[\r?\n|\r|\n]+/);         
 		        
@@ -95,12 +111,20 @@
                     points = csvLines[i].split(",");
                     dataPoints.push({ 
                         x: new Date(points[1] + " " + points[0]), 
-                        y: ((Math.abs(parseFloat(points[15])) < 12) ? 0 : (Math.abs(points[15])-11.5)*300)
+                        y: ((Math.abs(parseFloat(points[15 + shift])) < 12) ? 0 : (Math.abs(points[15 + shift])-11.5)*300)
                     });
                 }
             return dataPoints;
         }
                 function getBattADataPointsFromCSV(csv) {
+					if(document.getElementById('directory').value == "betaThree")
+                	{
+                		shift = -1;
+                	}
+                	else
+                	{
+                		shift = 0;
+                	}
             var dataPoints = csvLines = points = [];
             csvLines = csv.split(/[\r?\n|\r|\n]+/);         
 		        
@@ -109,12 +133,20 @@
                     points = csvLines[i].split(",");
                     dataPoints.push({ 
                         x: new Date(points[1] + " " + points[0]), 
-                        y: parseFloat(points[16]) 		
+                        y: parseFloat(points[16 + shift]) 		
                     });
                 }
             return dataPoints;
         }
                 function getBattVDataPointsFromCSV(csv) {
+                	if(document.getElementById('directory').value == "betaThree")
+                	{
+                		shift = -1;
+                	}
+                	else
+                	{
+                		shift = 0;
+                	}
             var dataPoints = csvLines = points = [];
             csvLines = csv.split(/[\r?\n|\r|\n]+/);         
 		        
@@ -123,7 +155,7 @@
                     points = csvLines[i].split(",");
                     dataPoints.push({ 
                         x: new Date(points[1] + " " + points[0]), 
-                        y: Math.abs(parseFloat(points[17])-11.5)*300 		
+                        y: Math.abs(parseFloat(points[17 + shift])-11.5)*300 		
                     });
                 }
             return dataPoints;
