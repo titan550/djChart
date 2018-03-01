@@ -54,7 +54,7 @@
         var dataPoints = [];
         function getFilePath(date)
         {
-        	var filePath = "https://galvanize-cors-proxy.herokuapp.com/http://www.crestlinesoaring.org/wx/umwx/" + document.getElementById("directory").value + "/";
+        	var filePath = "https://crossorigin.me/http://www.crestlinesoaring.org/wx/umwx/" + document.getElementById("directory").value + "/";
         	var fileName = date.format("[wx]YYYYMMDD[.dat]");
         	return filePath + fileName + "?" + Math.random();
         }
